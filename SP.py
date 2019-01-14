@@ -28,16 +28,22 @@ x = 400
 y = 100
 a = 100
 b = 100
+arriba = True
+ancho = 15
 fuente1 = pygame.font.SysFont("Arial", 20, True, False)
 info = fuente1.render("Comete todos los puntos ", 0, (255,255,255))
 infb = fuente1.render("Tus puntos son:"+str(puntos), 0, (255,255,255))
 infa = fuente1.render("No choques", 0, (255,255,255))
-recta = pygame.Rect(x,y,60,15)
+recta = pygame.Rect(x,y,ancho,15)
 rectb = pygame.Rect(a,b,15,15)
 while salir != True:
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
 			salir = True
+		if recta.colliderect(rectb):	
+			ancho = ancho+15
+			recta = pygame.Rect(x,y,ancho,15)	
+			
 	pygame.display.update()
 	pantalla.fill(gris)
 	pantalla.blit(info,(5,5))
