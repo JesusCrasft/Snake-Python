@@ -28,7 +28,10 @@ x = 400
 y = 100
 a = 100
 b = 100
-arriba = True
+arriba = False
+abajo = False
+derecha = True
+izquierda = False
 ancho = 15
 fuente1 = pygame.font.SysFont("Arial", 20, True, False)
 info = fuente1.render("Comete todos los puntos ", 0, (255,255,255))
@@ -40,9 +43,20 @@ while salir != True:
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
 			salir = True
+		if event.type == pygame.KEYDOWN:
+			if event.key == pygame.K_UP:
+				recta.move_ip(0,-10)
+			if event.key == pygame.K_DOWN:
+				recta.move_ip(0,+10)
+			if event.key == pygame.K_LEFT:
+				recta.move_ip(-10,0)
+			if event.key == pygame.K_RIGHT:
+				recta.move_ip(+10,0)
 		if recta.colliderect(rectb):	
 			ancho = ancho+15
 			recta = pygame.Rect(x,y,ancho,15)	
+			b = 400
+			rectb = pygame.Rect(a,b,15,15)
 			
 	pygame.display.update()
 	pantalla.fill(gris)
