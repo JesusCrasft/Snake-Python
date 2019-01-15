@@ -22,8 +22,6 @@
 
 >Al abrir el archivo python te dira que se hace.
 
->Despues te pedira poner un nombre de jugador.
-
 >Despues comenzara el juego.
 
 >Tienes que comer cuantos puntos rojos puedas.

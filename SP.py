@@ -8,7 +8,7 @@ def quit() :
 
 Instrucciones = Tkinter.Tk()
 Instrucciones.title("Instrucciones")
-AB = Tkinter.Label(Instrucciones,text="Tiene 3 vidas no choques con las paredes")
+AB = Tkinter.Label(Instrucciones,text="No choques con las paredes")
 AB.pack()
 AC = Tkinter.Label(Instrucciones,text="Comete todos los puntos rojos")
 AC.pack()
@@ -24,25 +24,28 @@ rojo = (200,50,20)
 azul = (70,20,100)
 gris = (1,1,1)
 puntos = 0
-x = 400
-y = 100
-a = 100
-b = 100
+puntosv = 0
+listasp = []
 arriba = False
 abajo = False
 derecha = True
 izquierda = False
-ancho = 15
 fuente1 = pygame.font.SysFont("Arial", 20, True, False)
 info = fuente1.render("Comete todos los puntos ", 0, (255,255,255))
 infb = fuente1.render("Tus puntos son:"+str(puntos), 0, (255,255,255))
-infa = fuente1.render("No choques", 0, (255,255,255))
-recta = pygame.Rect(x,y,ancho,15)
-rectb = pygame.Rect(a,b,15,15)
+infa = fuente1.render("Puntuacion Alta:"+str(puntosv), 0, (255,255,255))
+for x in range(60):
+	w = random.randrange(14,15)
+	h = random.randrange(14,15)
+	x = random.randrange(700)
+	y = random.randrange(500)
+	listasp.append(pygame.Rect(x,y,w,h))
+recta = pygame.Rect(400,100,15,15)
+rectb = pygame.Rect(x,y,w,h)
 while salir != True:
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
-			salir = True
+			salir = True	
 		if event.type == pygame.KEYDOWN:
 			if event.key == pygame.K_UP:
 				recta.move_ip(0,-10)
@@ -53,11 +56,49 @@ while salir != True:
 			if event.key == pygame.K_RIGHT:
 				recta.move_ip(+10,0)
 		if recta.colliderect(rectb):	
-			ancho = ancho+15
-			recta = pygame.Rect(x,y,ancho,15)	
-			b = 400
-			rectb = pygame.Rect(a,b,15,15)
-			
+			puntos += 5
+			infb = fuente1.render("Tus puntos son:"+str(puntos), 0, (255,255,255))
+			recta.width = recta.width + 15
+			for x in range(60):
+				w = random.randrange(14,15)
+				h = random.randrange(14,15)
+				x = random.randrange(700)
+				y = random.randrange(500)
+				listasp.append(pygame.Rect(x,y,w,h))
+			rectb = pygame.Rect(x,y,w,h)	
+		if recta.top > 520:
+			recta.top = 100
+			recta.left = 400
+			puntosv = puntos
+			puntos = 0
+			recta.width = 15
+			infb = fuente1.render("Tus puntos son:"+str(puntos), 0, (255,255,255))
+			infa = fuente1.render("Puntuacion Alta:"+str(puntosv), 0, (255,255,255))
+		if recta.left > 1000:
+			recta.top = 100
+			recta.left = 400
+			puntosv = puntos
+			puntos = 0
+			recta.width = 15
+			infb = fuente1.render("Tus puntos son:"+str(puntos), 0, (255,255,255))
+			infa = fuente1.render("Puntuacion Alta:"+str(puntosv), 0, (255,255,255))
+		if recta.top < 0:
+			recta.top = 100
+			recta.left = 400
+			puntosv = puntos
+			puntos = 0
+			recta.width = 15
+			infb = fuente1.render("Tus puntos son:"+str(puntos), 0, (255,255,255))
+			infa = fuente1.render("Puntuacion Alta:"+str(puntosv), 0, (255,255,255))
+		if recta.left < 0:
+			recta.top = 100
+			recta.left = 400
+			puntosv = puntos		
+			puntos = 0	
+			recta.width = 15
+			infb = fuente1.render("Tus puntos son:"+str(puntos), 0, (255,255,255))
+			infa = fuente1.render("Puntuacion Alta:"+str(puntosv), 0, (255,255,255))
+
 	pygame.display.update()
 	pantalla.fill(gris)
 	pantalla.blit(info,(5,5))
