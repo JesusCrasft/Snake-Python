@@ -26,10 +26,8 @@ gris = (1,1,1)
 puntos = 0
 puntosv = 0
 listasp = []
-arriba = True
-abajo = False
-derecha = False
-izquierda = False
+wr = 15
+hr = 15	
 fuente1 = pygame.font.SysFont("Arial", 20, True, False)
 info = fuente1.render("Comete todos los puntos ", 0, (255,255,255))
 infb = fuente1.render("Tus puntos son:"+str(puntos), 0, (255,255,255))
@@ -48,24 +46,32 @@ while salir != True:
 			salir = True	
 		if event.type == pygame.KEYDOWN:
 			if event.key == pygame.K_UP:
-				arriba = True
-				abajo = False
-				izquierda = False
-				derecha = False
-				for x in range(60):
-					if arriba != False:	
-						recta.move_ip(0,-10)
-						print(recta.top)
+				if puntos >= 5:
+						rectaecta.width = 15
+						recta.height = hr
+				recta.move_ip(0,-10)
 			if event.key == pygame.K_DOWN:
+				if puntos >= 5:
+						recta.width = 15
+						recta.height = hr
 				recta.move_ip(0,+10)
 			if event.key == pygame.K_LEFT:
+				if puntos >= 5:
+						recta.height = 15
+						recta.width = wr				
 				recta.move_ip(-10,0)
 			if event.key == pygame.K_RIGHT:
+				pygame.key.get_repeat(recta.move_ip(+10,0))
+				if puntos >= 5:
+						recta.height = 15
+						recta.width = wr
 				recta.move_ip(+10,0)
 		if recta.colliderect(rectb):	
 			puntos += 5
 			infb = fuente1.render("Tus puntos son:"+str(puntos), 0, (255,255,255))
 			recta.width = recta.width + 15
+			wr = wr + 15
+			hr = hr + 15
 			for x in range(1):
 				w = random.randrange(14,15)
 				h = random.randrange(14,15)
