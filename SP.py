@@ -26,6 +26,8 @@ gris = (1,1,1)
 puntos = 0
 puntosv = 0
 listasp = []
+arriba = False
+abajo = False
 wr = 15
 hr = 15	
 fuente1 = pygame.font.SysFont("Arial", 20, True, False)
@@ -46,10 +48,11 @@ while salir != True:
 			salir = True	
 		if event.type == pygame.KEYDOWN:
 			if event.key == pygame.K_UP:
+				vuelta = 1
 				if puntos >= 5:
-						rectaecta.width = 15
+						recta.width = 15
 						recta.height = hr
-				recta.move_ip(0,-10)
+					recta.move_ip(0,+10)
 			if event.key == pygame.K_DOWN:
 				if puntos >= 5:
 						recta.width = 15
@@ -61,7 +64,6 @@ while salir != True:
 						recta.width = wr				
 				recta.move_ip(-10,0)
 			if event.key == pygame.K_RIGHT:
-				pygame.key.get_repeat(recta.move_ip(+10,0))
 				if puntos >= 5:
 						recta.height = 15
 						recta.width = wr
