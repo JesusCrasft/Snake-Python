@@ -28,6 +28,8 @@ puntosv = 0
 listasp = []
 arriba = False
 abajo = False
+derecha = False
+izquierda = False
 wr = 15
 hr = 15	
 fuente1 = pygame.font.SysFont("Arial", 20, True, False)
@@ -42,32 +44,44 @@ for x in range(1):
 	listasp.append(pygame.Rect(x,y,w,h))
 recta = pygame.Rect(400,100,15,15)
 rectb = pygame.Rect(x,y,w,h)
-while salir != True:
+while salir != True:	
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
 			salir = True	
 		if event.type == pygame.KEYDOWN:
 			if event.key == pygame.K_UP:
-				vuelta = 1
+				abajo = False
+				arriba = True
+				izquierda = False
+				derecha = False
 				if puntos >= 5:
 						recta.width = 15
 						recta.height = hr
-					recta.move_ip(0,+10)
 			if event.key == pygame.K_DOWN:
+				arriba = False
+				abajo = True
+				izquierda = False
+				derecha = False
 				if puntos >= 5:
 						recta.width = 15
 						recta.height = hr
-				recta.move_ip(0,+10)
 			if event.key == pygame.K_LEFT:
+				izquierda = True
+				derecha = False
+				arriba = False
+				abajo = False			
 				if puntos >= 5:
 						recta.height = 15
 						recta.width = wr				
-				recta.move_ip(-10,0)
 			if event.key == pygame.K_RIGHT:
+				derecha = True
+				izquierda = False
+				arriba = False
+				abajo = False
 				if puntos >= 5:
 						recta.height = 15
 						recta.width = wr
-				recta.move_ip(+10,0)
+				recta.move_ip(+10,0)		
 		if recta.colliderect(rectb):	
 			puntos += 5
 			infb = fuente1.render("Tus puntos son:"+str(puntos), 0, (255,255,255))
@@ -82,38 +96,66 @@ while salir != True:
 				listasp.append(pygame.Rect(x,y,w,h))
 			rectb = pygame.Rect(x,y,w,h)	
 		if recta.top > 520:
+			derecha = False
 			recta.top = 100
 			recta.left = 400
 			puntosv = puntos
 			puntos = 0
 			recta.width = 15
+			recta.height = 15
+			hr = 0
+			wr = 0
 			infb = fuente1.render("Tus puntos son:"+str(puntos), 0, (255,255,255))
 			infa = fuente1.render("Puntuacion Alta:"+str(puntosv), 0, (255,255,255))
 		if recta.left > 1000:
+			abajo = False
 			recta.top = 100
 			recta.left = 400
 			puntosv = puntos
 			puntos = 0
 			recta.width = 15
+			recta.height = 15
+			hr = 0
+			wr = 0
 			infb = fuente1.render("Tus puntos son:"+str(puntos), 0, (255,255,255))
 			infa = fuente1.render("Puntuacion Alta:"+str(puntosv), 0, (255,255,255))
 		if recta.top < 0:
+			izquierda = False
 			recta.top = 100
 			recta.left = 400
 			puntosv = puntos
 			puntos = 0
 			recta.width = 15
+			recta.height = 15
+			hr = 0
+			wr = 0
 			infb = fuente1.render("Tus puntos son:"+str(puntos), 0, (255,255,255))
 			infa = fuente1.render("Puntuacion Alta:"+str(puntosv), 0, (255,255,255))
 		if recta.left < 0:
+			arriba = False
 			recta.top = 100
 			recta.left = 400
 			puntosv = puntos		
 			puntos = 0	
 			recta.width = 15
+			recta.height = 15
+			hr = 0
+			wr = 0
 			infb = fuente1.render("Tus puntos son:"+str(puntos), 0, (255,255,255))
 			infa = fuente1.render("Puntuacion Alta:"+str(puntosv), 0, (255,255,255))
-
+	if arriba == True:
+		recta.move_ip(0,-10)
+		print(recta.top)
+	if abajo == True:
+		recta.move_ip(0,+10)
+		print(recta.top)
+	if derecha == True:
+		recta.move_ip(+10,0)
+		print(recta.left)
+	if izquierda == True:
+		recta.move_ip(-10,0)	
+		print(recta.left)
+	relog1.tick(20)
 	pygame.display.update()
 	pantalla.fill(gris)
 	pantalla.blit(info,(5,5))
