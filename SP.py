@@ -85,7 +85,6 @@ while salir != True:
 		if recta.colliderect(rectb):	
 			puntos += 5
 			infb = fuente1.render("Tus puntos son:"+str(puntos), 0, (255,255,255))
-			recta.width = recta.width + 15
 			wr = wr + 15
 			hr = hr + 15
 			for x in range(1):
@@ -96,7 +95,6 @@ while salir != True:
 				listasp.append(pygame.Rect(x,y,w,h))
 			rectb = pygame.Rect(x,y,w,h)	
 		if recta.top > 520:
-			derecha = False
 			recta.top = 100
 			recta.left = 400
 			puntosv = puntos
