@@ -94,7 +94,7 @@ while salir != True:
 				y = random.randrange(500)
 				listasp.append(pygame.Rect(x,y,w,h))
 			rectb = pygame.Rect(x,y,w,h)	
-		if recta.top > 520:
+		if recta.top > 500:
 			recta.top = 100
 			recta.left = 400
 			puntosv = puntos
@@ -105,7 +105,7 @@ while salir != True:
 			wr = 0
 			infb = fuente1.render("Tus puntos son:"+str(puntos), 0, (255,255,255))
 			infa = fuente1.render("Puntuacion Alta:"+str(puntosv), 0, (255,255,255))
-		if recta.left > 1000:
+		if recta.left > 900:
 			abajo = False
 			recta.top = 100
 			recta.left = 400
@@ -143,17 +143,13 @@ while salir != True:
 			infa = fuente1.render("Puntuacion Alta:"+str(puntosv), 0, (255,255,255))
 	if arriba == True:
 		recta.move_ip(0,-10)
-		print(recta.top)
 	if abajo == True:
 		recta.move_ip(0,+10)
-		print(recta.top)
 	if derecha == True:
 		recta.move_ip(+10,0)
-		print(recta.left)
 	if izquierda == True:
 		recta.move_ip(-10,0)	
-		print(recta.left)
-	relog1.tick(20)
+	relog1.tick(10)
 	pygame.display.update()
 	pantalla.fill(gris)
 	pantalla.blit(info,(5,5))
