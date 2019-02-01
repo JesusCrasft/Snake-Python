@@ -17,6 +17,7 @@ Iniciar.pack()
 Instrucciones.mainloop()
 
 pygame.init()
+pygame.display.set_caption("Snake-Python")
 pantalla = pygame.display.set_mode((1024,600))
 salir = False
 relog1 = pygame.time.Clock()
@@ -149,7 +150,7 @@ while salir != True:
 		recta.move_ip(+10,0)
 	if izquierda == True:
 		recta.move_ip(-10,0)	
-	relog1.tick(10)
+	relog1.tick(20)
 	pygame.display.update()
 	pantalla.fill(gris)
 	pantalla.blit(info,(5,5))
