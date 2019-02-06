@@ -31,6 +31,7 @@ arriba = False
 abajo = False
 derecha = False
 izquierda = False
+
 wr = 15
 hr = 15	
 fuente1 = pygame.font.SysFont("Arial", 20, True, False)
@@ -45,6 +46,7 @@ for x in range(1):
 	listasp.append(pygame.Rect(x,y,w,h))
 recta = pygame.Rect(400,100,15,15)
 rectb = pygame.Rect(x,y,w,h)
+newrec = pygame.Rect(recta.left,recta.top-10,15,15)
 while salir != True:	
 	for event in pygame.event.get():
 		if event.type == pygame.QUIT:
@@ -55,39 +57,25 @@ while salir != True:
 				arriba = True
 				izquierda = False
 				derecha = False
-				if puntos >= 5:
-						recta.width = 15
-						recta.height = hr
 			if event.key == pygame.K_DOWN:
 				arriba = False
 				abajo = True
 				izquierda = False
 				derecha = False
-				if puntos >= 5:
-						recta.width = 15
-						recta.height = hr
 			if event.key == pygame.K_LEFT:
 				izquierda = True
 				derecha = False
 				arriba = False
-				abajo = False			
-				if puntos >= 5:
-						recta.height = 15
-						recta.width = wr				
+				abajo = False							
 			if event.key == pygame.K_RIGHT:
 				derecha = True
 				izquierda = False
 				arriba = False
 				abajo = False
-				if puntos >= 5:
-						recta.height = 15
-						recta.width = wr
 				recta.move_ip(+10,0)		
 		if recta.colliderect(rectb):	
 			puntos += 5
 			infb = fuente1.render("Tus puntos son:"+str(puntos), 0, (255,255,255))
-			wr = wr + 15
-			hr = hr + 15
 			for x in range(1):
 				w = random.randrange(14,15)
 				h = random.randrange(14,15)
@@ -144,12 +132,16 @@ while salir != True:
 			infa = fuente1.render("Puntuacion Alta:"+str(puntosv), 0, (255,255,255))
 	if arriba == True:
 		recta.move_ip(0,-10)
+		newrec = pygame.Rect(recta.left,recta.top-10,15,15)
 	if abajo == True:
 		recta.move_ip(0,+10)
+		newrec = pygame.Rect(recta.left,recta.top-10,15,15)
 	if derecha == True:
 		recta.move_ip(+10,0)
+		newrec = pygame.Rect(recta.left,recta.top-10,15,15)
 	if izquierda == True:
-		recta.move_ip(-10,0)	
+		recta.move_ip(-10,0)
+		newrec = pygame.Rect(recta.left,recta.top-10,15,15)	
 	relog1.tick(20)
 	pygame.display.update()
 	pantalla.fill(gris)
@@ -157,5 +149,6 @@ while salir != True:
 	pantalla.blit(infb,(400,5))
 	pantalla.blit(infa,(700,5))
 	pygame.draw.rect(pantalla,azul,recta)	
-	pygame.draw.rect(pantalla,rojo,rectb)	
+	pygame.draw.rect(pantalla,rojo,rectb)
+	pygame.draw.rect(pantalla,azul,newrec)		
 pygame.quit()
