@@ -83,7 +83,7 @@ while salir != True:
 				w = random.randrange(14,15)
 				h = random.randrange(14,15)
 				x = random.randrange(700)
-				y = random.randrange(500)
+				y = random.randrange(500)	
 				listasp.append(pygame.Rect(x,y,w,h))
 			rectb = pygame.Rect(x,y,w,h)	
 		if recta.top > 500:
