@@ -15,7 +15,7 @@ AC.pack()
 Iniciar = Tkinter.Button(Instrucciones,text="Iniciar",command=quit)
 Iniciar.pack()
 Instrucciones.mainloop()
-
+		
 pygame.init()
 pygame.display.set_caption("Snake-Python")
 pantalla = pygame.display.set_mode((1024,600))
@@ -45,7 +45,6 @@ for x in range(1):
 	y = random.randrange(500)
 	listasp.append(pygame.Rect(x,y,w,h))
 recta = pygame.Rect(400,100,15,15)
-n = pygame.Rect(recta.left,recta.top-10,15,15)
 rectb = pygame.Rect(x,y,w,h)
 while salir != True:	
 	for event in pygame.event.get():
@@ -73,19 +72,27 @@ while salir != True:
 				arriba = False
 				abajo = False
 		if recta.colliderect(rectb):
-			puntos += 5
-			infb = fuente1.render("Tus puntos son:"+str(puntos), 0, (255,255,255))
-			for x in range(1):
-				listap.append(pygame.Rect(recta.left,recta.top-20,15,15))
-			for recs in listap:
-				a = 0
+			if derecha == True:
+				czn = pygame.Rect(recta.left+10,recta.top,15,15)
+				pygame.draw.rect(pantalla,azul,czn)
+			if izquierda == True:
+				czn = pygame.Rect(recta.left-10,recta.top,15,15)
+				pygame.draw.rect(pantalla,azul,czn)
+			if arriba == True:
+				czn = pygame.Rect(recta.left,recta.top-10,15,15)
+				pygame.draw.rect(pantalla,azul,czn)
+			if abajo == True:
+				czn = pygame.Rect(recta.left,recta.top+10,15,15)	
+				pygame.draw.rect(pantalla,azul,czn)			
 			for x in range(1):
 				w = random.randrange(14,15)
 				h = random.randrange(14,15)
 				x = random.randrange(700)
 				y = random.randrange(500)	
 				listasp.append(pygame.Rect(x,y,w,h))
-			rectb = pygame.Rect(x,y,w,h)	
+			rectb = pygame.Rect(x,y,w,h)
+			puntos += 5
+			infb = fuente1.render("Tus puntos son:"+str(puntos), 0, (255,255,255))	
 		if recta.top > 500:
 			recta.top = 100
 			recta.left = 400
@@ -135,17 +142,13 @@ while salir != True:
 			infa = fuente1.render("Puntuacion Alta:"+str(puntosv), 0, (255,255,255))
 	if arriba == True:
 		recta.move_ip(0,-10)
-		n = pygame.Rect(recta.left,recta.top-10,15,15)
 	if abajo == True:
 		recta.move_ip(0,+10)
-		n = pygame.Rect(recta.left,recta.top+10,15,15)
 	if derecha == True:
 		recta.move_ip(+10,0)
-		n = pygame.Rect(recta.left+10,recta.top,15,15)
 	if izquierda == True:
 		recta.move_ip(-10,0)	
-		n = pygame.Rect(recta.left-10,recta.top,15,15)
-		
+
 	relog1.tick(20)
 	pygame.display.update()
 	pantalla.fill(gris)
@@ -154,5 +157,4 @@ while salir != True:
 	pantalla.blit(infa,(700,5))
 	pygame.draw.rect(pantalla,azul,recta)	
 	pygame.draw.rect(pantalla,rojo,rectb)
-	pygame.draw.rect(pantalla,azul,n)
 pygame.quit()
