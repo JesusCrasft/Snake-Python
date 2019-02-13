@@ -72,18 +72,8 @@ while salir != True:
 				arriba = False
 				abajo = False
 		if recta.colliderect(rectb):
-			if derecha == True:
-				czn = pygame.Rect(recta.left+10,recta.top,15,15)
-				pygame.draw.rect(pantalla,azul,czn)
-			if izquierda == True:
-				czn = pygame.Rect(recta.left-10,recta.top,15,15)
-				pygame.draw.rect(pantalla,azul,czn)
-			if arriba == True:
-				czn = pygame.Rect(recta.left,recta.top-10,15,15)
-				pygame.draw.rect(pantalla,azul,czn)
-			if abajo == True:
-				czn = pygame.Rect(recta.left,recta.top+10,15,15)	
-				pygame.draw.rect(pantalla,azul,czn)			
+			for a in range(1):
+				print()
 			for x in range(1):
 				w = random.randrange(14,15)
 				h = random.randrange(14,15)
