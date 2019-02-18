@@ -27,7 +27,6 @@ gris = (1,1,1)
 puntos = 0
 puntosv = 0
 listasp = []
-listap = []
 arriba = False
 abajo = False
 derecha = False
@@ -72,14 +71,16 @@ while salir != True:
 				arriba = False
 				abajo = False
 		if recta.colliderect(rectb):
-			for a in range(1):
-				print()
 			for x in range(1):
 				w = random.randrange(14,15)
 				h = random.randrange(14,15)
 				x = random.randrange(700)
 				y = random.randrange(500)	
+				rm = random.choice(["rectc = pygame.Rect(x,y,w,h)", "rectd = pygame.Rect(x,y,w,h)", "recte = pygame.Rect(x,y,w,h)", "recf = pygame.Rect(x,y,w,h)"])
 				listasp.append(pygame.Rect(x,y,w,h))
+			rn = rm
+			print(rn)
+			pygame.draw.rect(pantalla,azul,rn)	
 			rectb = pygame.Rect(x,y,w,h)
 			puntos += 5
 			infb = fuente1.render("Tus puntos son:"+str(puntos), 0, (255,255,255))	
