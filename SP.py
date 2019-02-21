@@ -2,7 +2,7 @@ import pygame
 import random
 import Tkinter
 
-def quit() :
+def quit():
 	global Instrucciones
 	Instrucciones.destroy()
 
@@ -18,14 +18,16 @@ Instrucciones.mainloop()
 		
 pygame.init()
 pygame.display.set_caption("Snake-Python")
-pantalla = pygame.display.set_mode((1024,600))
+pantalla = pygame.display.set_mode((500,470))
 salir = False
 relog1 = pygame.time.Clock()
 rojo = (200,50,20)
 azul = (70,20,100)
-gris = (1,1,1)
+blanco = (200,200,200)
 puntos = 0
 puntosv = 0
+y1 = 0
+x1 = 0
 listasp = []
 arriba = False
 abajo = False
@@ -34,14 +36,12 @@ izquierda = False
 wr = 15
 hr = 15	
 fuente1 = pygame.font.SysFont("Arial", 20, True, False)
-info = fuente1.render("Comete todos los puntos ", 0, (255,255,255))
-infb = fuente1.render("Tus puntos son:"+str(puntos), 0, (255,255,255))
-infa = fuente1.render("Puntuacion Alta:"+str(puntosv), 0, (255,255,255))
+infb = fuente1.render("Tus puntos son:"+str(puntos), 0, (132,12,11))
 for x in range(1):
 	w = random.randrange(14,15)
 	h = random.randrange(14,15)
-	x = random.randrange(700)
-	y = random.randrange(500)
+	x = random.randrange(300)
+	y = random.randrange(300)
 	listasp.append(pygame.Rect(x,y,w,h))
 recta = pygame.Rect(400,100,15,15)
 rects = pygame.Rect(recta.left-10,recta.top,15,15)
@@ -71,29 +71,16 @@ while salir != True:
 				izquierda = False
 				arriba = False
 				abajo = False
-		if recta.colliderect(rectb):
-			rects.width += 15
-			if arriba == True:
-				recta.height += 15
-				rects.width -= 15
-			if abajo == True:	
-				recta.height += 15
-				rects.width -= 15
-			if izquierda == True:
-				recta.height -= 15
-				rects.width += 15
-			if derecha == True:	
-				recta.height -= 15
-				rects.width += 15
+		if recta.colliderect(rectb) and rects.colliderect(rectb):
 			for x in range(1):
 				w = random.randrange(14,15)
 				h = random.randrange(14,15)
-				x = random.randrange(700)
-				y = random.randrange(500)	
+				x = random.randrange(300)
+				y = random.randrange(300)	
 				listasp.append(pygame.Rect(x,y,w,h))	
 			rectb = pygame.Rect(x,y,w,h)
 			puntos += 5
-			infb = fuente1.render("Tus puntos son:"+str(puntos), 0, (255,255,255))	
+			infb = fuente1.render("Tus puntos son:"+str(puntos), 0, (132,12,11))	
 		if recta.top > 500:
 			recta.top = 100
 			recta.left = 400
@@ -103,8 +90,7 @@ while salir != True:
 			recta.height = 15
 			hr = 0
 			wr = 0
-			infb = fuente1.render("Tus puntos son:"+str(puntos), 0, (255,255,255))
-			infa = fuente1.render("Puntuacion Alta:"+str(puntosv), 0, (255,255,255))
+			infb = fuente1.render("Tus puntos son:"+str(puntos), 0, (132,12,11))
 		if recta.left > 900:
 			abajo = False
 			recta.top = 100
@@ -115,8 +101,7 @@ while salir != True:
 			recta.height = 15
 			hr = 0
 			wr = 0
-			infb = fuente1.render("Tus puntos son:"+str(puntos), 0, (255,255,255))
-			infa = fuente1.render("Puntuacion Alta:"+str(puntosv), 0, (255,255,255))
+			infb = fuente1.render("Tus puntos son:"+str(puntos), 0, (132,12,11))
 		if recta.top < 0:
 			izquierda = False
 			recta.top = 100
@@ -127,8 +112,7 @@ while salir != True:
 			recta.height = 15
 			hr = 0
 			wr = 0
-			infb = fuente1.render("Tus puntos son:"+str(puntos), 0, (255,255,255))
-			infa = fuente1.render("Puntuacion Alta:"+str(puntosv), 0, (255,255,255))
+			infb = fuente1.render("Tus puntos son:"+str(puntos), 0, (132,12,11))
 		if recta.left < 0:
 			arriba = False
 			recta.top = 100
@@ -139,8 +123,7 @@ while salir != True:
 			recta.height = 15
 			hr = 0
 			wr = 0
-			infb = fuente1.render("Tus puntos son:"+str(puntos), 0, (255,255,255))
-			infa = fuente1.render("Puntuacion Alta:"+str(puntosv), 0, (255,255,255))
+			infb = fuente1.render("Tus puntos son:"+str(puntos), 0, (132,12,11))
 	if arriba == True:
 		recta.move_ip(0,-10)
 		rects = pygame.Rect(recta.left,recta.top-10,rects.width,rects.height)
@@ -154,12 +137,10 @@ while salir != True:
 		recta.move_ip(-10,0)	
 		rects = pygame.Rect(recta.left-10,recta.top,rects.width,rects.height)
 
-	relog1.tick(20)
+	relog1.tick(15)
 	pygame.display.update()
-	pantalla.fill(gris)
-	pantalla.blit(info,(5,5))
-	pantalla.blit(infb,(400,5))
-	pantalla.blit(infa,(700,5))
+	pantalla.fill(blanco)
+	pantalla.blit(infb,(5,5))
 	pygame.draw.rect(pantalla,azul,recta)	
 	pygame.draw.rect(pantalla,azul,rects)	
 	pygame.draw.rect(pantalla,rojo,rectb)
