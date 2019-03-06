@@ -44,7 +44,7 @@ for x in range(1):
 	y = random.randrange(300)
 	listasp.append(pygame.Rect(x,y,w,h))
 recta = pygame.Rect(400,100,15,15)
-rects = pygame.Rect(recta.left-10,recta.top,15,15)
+rects = pygame.Rect(recta.left,recta.top,15,15)
 rectb = pygame.Rect(x,y,w,h)
 while salir != True:	
 	for event in pygame.event.get():
@@ -72,6 +72,10 @@ while salir != True:
 				arriba = False
 				abajo = False
 		if recta.colliderect(rectb) and rects.colliderect(rectb):
+			rects.width += 15
+			if arriba:
+				print(recta.top)
+		
 			for x in range(1):
 				w = random.randrange(14,15)
 				h = random.randrange(14,15)
@@ -126,16 +130,16 @@ while salir != True:
 			infb = fuente1.render("Tus puntos son:"+str(puntos), 0, (132,12,11))
 	if arriba == True:
 		recta.move_ip(0,-10)
-		rects = pygame.Rect(recta.left,recta.top-10,rects.width,rects.height)
+		rects = pygame.Rect(recta.left,recta.top,rects.width,rects.height)
 	if abajo == True:
 		recta.move_ip(0,+10)
-		rects = pygame.Rect(recta.left,recta.top+10,rects.width,rects.height)
+		rects = pygame.Rect(recta.left,recta.top,rects.width,rects.height)
 	if derecha == True:
 		recta.move_ip(+10,0)
-		rects = pygame.Rect(recta.left+10,recta.top,rects.width,rects.height)
+		rects = pygame.Rect(recta.left,recta.top,rects.width,rects.height)
 	if izquierda == True:
 		recta.move_ip(-10,0)	
-		rects = pygame.Rect(recta.left-10,recta.top,rects.width,rects.height)
+		rects = pygame.Rect(recta.left,recta.top,rects.width,rects.height)
 
 	relog1.tick(15)
 	pygame.display.update()
