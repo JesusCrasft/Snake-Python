@@ -1,35 +1,39 @@
 # Snake-Python
 > Es una aplicacion en desarrollo en Python; Es un juego donde tienes que comer los puntos rojos sin chocar con las paredes.
-- Es un juego de practica que estoy desarrollando.
-- Su nombre seria Snake-Python o S-P.
-- Cada dia se va mejorando.
+> Es un juego de practica que estoy desarrollando.
+> Su nombre seria Snake-Python o S-P.
+> Aun no esta terminado, lo actualizare cuando se me ocurra algun cambio o quiera probar algo de nuevo.
 
-## Instalación
+## Screenshots / Capturas de Pantalla
 
-- Funciona en Linux.
+## Tech-framework used / Tecnologías Usadas
+- Python
+- Python Library Tkinter
+- Python Library Pygame
 
->Descargar el archivo zip.
+## Install / Instalación
+#### OS X, Linux y Windows
 
->Extraer el archivo zip.
+Los unicos requisitos son tener instalado Python3, las librerias Tkinter y Pygame.
 
->Abrir la carpeta.
+*Descargar el archivo, descomprimirlo y situarse en la carpeta*
 
->Buscar el archivo python.
+Ejecutar el archivo SP.py con Python3 en una terminal.
 
->Y abrir una terminal y colocar python SP.py:Tienes que tener python instalado.
+## Tasks / Lista de Tareas
+- [x] Inicializar repositorio
+- [x] Subir mis primeros cambios a GitHub
+- [x] Completar el codigo
+- [x] Probar el el codigo
+- [x] Hacer el readme
 
-## Instrucciones
+## Contribute / Para contribuir
+1. Has un [Fork](https://github.com/JesusCrasft/Snake-Python/fork)
+2. Crea tu propia rama (git checkout -b feature/fooBar)
+3. Sube tus cambios (git commit -am 'Add some fooBar')
+4. Actualiza tu rama (git push origin feature/fooBar)
+5. Has un "Pull Request"
 
->Al abrir el archivo python te dira que se hace.
-
->Despues comenzara el juego.
-
->Tienes que comer cuantos puntos rojos puedas.
-
->Y no chocar con las paredes.
-
-## Lenguaje
-
->Se esta utilizando python.
-
->Las librerias usando son tkinter,pygame y random.
+## License / Licencia
+Jesus Angulo – @github/JesusCrasft – jesus.flores.angulo@gmail.com
+Distributed under the MIT license. See [LICENSE](LICENSE) for more information.
